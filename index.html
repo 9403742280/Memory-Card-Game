@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>Memory Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h2 class="heading">Memory Game using JavaScript</h2>
+        <div class="cards">
+          <div class="card" animal="duck">
+            <img src="cat.png" alt="" />
+          </div>
+          <div class="card" animal="lion">
+            <img src="dog.png" alt="" />
+          </div>
+          <div class="card" animal="dog">
+            <img src="donkey.png" alt="" />
+          </div>
+          <div class="card" animal="tiger">
+            <img src="tadpole.png" alt="" />
+          </div>
+          <div class="card" animal="jaguar">
+            <img src="frog.png" alt="" />
+          </div>
+          <div class="card" animal="cat">
+            <img src="monkey.png" alt="" />
+          </div>
+          <div class="card" animal="duck">
+            <img src="cat.png" alt="" />
+          </div>
+          <div class="card" animal="dog">
+            <img src="donkey.png" alt="" />
+          </div>
+          <div class="card" animal="jaguar">
+            <img src="frog.png" alt="" />
+          </div>
+          <div class="card" animal="lion">
+            <img src="dog.png" alt="" />
+          </div>
+          <div class="card" animal="cat">
+            <img src="monkey.png" alt="" />
+          </div>
+          <div class="card" animal="snake">
+            <img src="pikachu.png" alt="" />
+          </div>
+          <div class="card" animal="tiger">
+            <img src="tadpole.png" alt="" />
+          </div>
+          <div class="card" animal="panther">
+            <img src="eagle.png" alt="" />
+          </div>
+          <div class="card" animal="panther">
+            <img src="eagle.png" alt="" />
+          </div>
+          <div class="card" animal="snake">
+            <img src="pikachu.png" alt="" />
+          </div>
+        </div>
+      </div>
+      <script>
+        let counter = 0;
+let firstSelection = "";
+let secondSelection = "";
+
+const cards = document.querySelectorAll(".cards .card");
+cards.forEach((card) => {
+  card.addEventListener("click", () => {
+    card.classList.add("clicked");
+
+    if (counter === 0) {
+      firstSelection = card.getAttribute("animal");
+      counter++;
+    } else {
+      secondSelection = card.getAttribute("animal");
+      counter = 0;
+
+      if (firstSelection === secondSelection) {
+        const correctCards = document.querySelectorAll(
+          ".card[animal='" + firstSelection + "']"
+        );
+
+        correctCards[0].classList.add("checked");
+        correctCards[0].classList.remove("clicked");
+        correctCards[1].classList.add("checked");
+        correctCards[1].classList.remove("clicked");
+      } else {
+        const incorrectCards = document.querySelectorAll(".card.clicked");
+
+        incorrectCards[0].classList.add("shake");
+        incorrectCards[1].classList.add("shake");
+
+        setTimeout(() => {
+          incorrectCards[0].classList.remove("shake");
+          incorrectCards[0].classList.remove("clicked");
+          incorrectCards[1].classList.remove("shake");
+          incorrectCards[1].classList.remove("clicked");
+        }, 800);
+      }
+    }
+  });
+});
+      </script>
+</body>
+</html>
